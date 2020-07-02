@@ -40,4 +40,5 @@ steps:
     else
       echo "File msgcommitter not generated"
       exit 1
+    fi
   displayName: 'Validate msgcommitter file existance after build'
