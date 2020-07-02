@@ -17,14 +17,14 @@ variables:
   repo: '$(build.repository.name)'
 
 steps:
-- script: |
-    ls -altGr $(repo)
-  displayName: 'List repo'
-
 - task: GoTool@0
   inputs:
     version: '1.14.3'
   displayName: 'Install Go 1.14.3'
+
+- script: |
+    whereis go
+  displayName: 'Where is Go'
 
 - script: |
     go version
