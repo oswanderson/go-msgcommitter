@@ -1,0 +1,65 @@
+[
+    {
+        "name": {
+            "en-us": "feat"
+        },
+        "description": {
+            "en-us": "new feature for the user, not a new feature for the app/script",
+            "pt-br": "novas features para o usuário, não para a aplicação/script"
+        }
+    },
+    {
+        "name": {
+            "en-us": "fix"
+        },
+        "description": {
+            "en-us": "bug fix for the user, not a fix to the code",
+            "pt-br": "correções de bugs para o usuário, não para a aplicação/script"
+        }
+    },
+    {
+        "name": {
+            "en-us": "doc"
+        },
+        "description": {
+            "en-us": "changes to the documentation",
+            "pt-br": "mudanças na documentação"
+        }
+    },
+    {
+        "name": {
+            "en-us": "style"
+        },
+        "description": {
+            "en-us": "formatting, missing semicolons, etc; no production code change",
+            "pt-br": "formatação, ausência de pronto e vírgulas, etc; nada para o código em produção"
+        }
+    },
+    {
+        "name": {
+            "en-us": "refactor"
+        },
+        "description": {
+            "en-us": "refactoring production code, eg. renaming a variable",
+            "pt-br": "refatoração de código em produção, como por exemplo, renomeação de variável"
+        }
+    },
+    {
+        "name": {
+            "en-us": "test"
+        },
+        "description": {
+            "en-us": "adding missing tests, refactoring tests; no production code change",
+            "pt-br": "adição de testes faltantes, refatoração de testes; nada para o código em produção"
+        }
+    },
+    {
+        "name": {
+            "en-us": "chore"
+        },
+        "description": {
+            "en-us": "updating grunt tasks etc; no production code change",
+            "pt-br": "atualização de tarefas que executam lint, testes unitários, compilação, etc; nada para o código em produção"
+        }
+    }
+]
