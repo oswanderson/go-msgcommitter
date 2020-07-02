@@ -29,8 +29,14 @@ steps:
   displayName: 'Run tests'
 
 - script: |
-    go build cmd/msgcommitter/main.go
+    go build -o msgcommitter -v cmd/msgcommitter/main.go
+  displayName: 'Build go application'
 
 - script: |
-    ls -altGr .
-  displayName: 'List current dir'
+    if [ -e msgcommitter ]
+    then
+      echo "file msgcommitter successfully generated"
+      exit 0
+    else
+      echo "File msgcommitter not generated"
+      exit 1
