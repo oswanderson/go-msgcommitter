@@ -21,12 +21,15 @@ steps:
   displayName: 'Install Go 1.14.3'
 
 - script: |
-    whereis go
-  displayName: 'Where is Go'
+    go mod download
+  displayName: 'Download dependencies'
 
 - script: |
-    go version
-  displayName: 'Go Version'
+    go test -v ./...
+  displayName: 'Run tests'
+
+- script: |
+    go build cmd/msgcommitter/main.go
 
 - script: |
     ls -altGr .
