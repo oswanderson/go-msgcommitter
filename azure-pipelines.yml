@@ -30,7 +30,7 @@ steps:
 
 - script: |
     go build -o msgcommitter -v cmd/msgcommitter/main.go
-  displayName: 'Build go application'
+  displayName: 'Build msgcommitter'
 
 - script: |
     if [ -e msgcommitter ]
@@ -40,3 +40,4 @@ steps:
     else
       echo "File msgcommitter not generated"
       exit 1
+  displayName: 'Validate msgcommitter file existance after build'
