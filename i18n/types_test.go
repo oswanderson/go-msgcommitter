@@ -1,7 +1,6 @@
 package i18n
 
 import (
-	"go-msgcommitter/msgformat"
 	"testing"
 
 	"github.com/franela/goblin"
@@ -90,7 +89,7 @@ func TestTypesTranslation(t *testing.T) {
 			g.Assert(len(result)).Equal(7)
 
 			for _, subjectType := range result {
-				g.Assert((subjectType != msgformat.Type{})).IsTrue()
+				g.Assert((subjectType != Type{})).IsTrue()
 			}
 		})
 

@@ -1,6 +1,10 @@
 package i18n
 
-import "go-msgcommitter/msgformat"
+// Type ...
+type Type struct {
+	Name string
+	Desc string
+}
 
 type typeTranslation struct {
 	Name map[string]string
@@ -23,8 +27,8 @@ func (t *typeTranslation) getDescription(translation string) string {
 	return t.Desc[EnUS]
 }
 
-func (t *typeTranslation) toType(nameTranslation string, descTranslation string) msgformat.Type {
-	return msgformat.Type{
+func (t *typeTranslation) toType(nameTranslation string, descTranslation string) Type {
+	return Type{
 		Name: t.getName(nameTranslation),
 		Desc: t.getDescription(descTranslation),
 	}
@@ -84,8 +88,8 @@ var translations = [...]typeTranslation{
 
 // GetTypes returns a list of default message subject types with infos according to the
 // language defined on environment variable XXXX.
-func GetTypes(nameTranslation string, descTranslation string) [7]msgformat.Type {
-	types := [len(translations)]msgformat.Type{}
+func GetTypes(nameTranslation string, descTranslation string) [7]Type {
+	types := [len(translations)]Type{}
 
 	for index, typeTsl := range translations {
 		validatedName, validatedDesc := validateLanguage(nameTranslation, descTranslation)
