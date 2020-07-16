@@ -42,7 +42,7 @@ func TestBuild(t *testing.T) {
 			g.Assert(builtMessage).Equal(expectedMessage)
 		})
 
-		g.It("should return a valid generated string even with an empty scope", func() {
+		g.It("should return a valid generated string without parenthesis in case of an empty scope", func() {
 			message := msgformat.Message{
 				Subject: msgformat.Subject{
 					Type:  msgSubType,
@@ -54,9 +54,8 @@ func TestBuild(t *testing.T) {
 			}
 			builtMessage := Build(message)
 			expectedMessage := fmt.Sprintf(
-				"%s(%s): %s\n\n%s\n\n%s",
+				"%s: %s\n\n%s\n\n%s",
 				msgSubType,
-				"",
 				msgSubText,
 				msgBody,
 				msgFooter,

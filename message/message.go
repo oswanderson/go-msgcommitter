@@ -10,14 +10,21 @@ import (
 func Build(m msgformat.Message) string {
 	var builder strings.Builder
 
-	subject := fmt.Sprintf("%s(%s): %s\n", m.Subject.Type, m.Subject.Scope, m.Subject.Text)
-	builder.WriteString(subject)
+	if len(m.Subject.Scope) == 0 {
+		builder.WriteString(fmt.Sprintf("%s: %s\n", m.Subject.Type, m.Subject.Text))
+	} else {
+		builder.WriteString(
+			fmt.Sprintf("%s(%s): %s\n", m.Subject.Type, m.Subject.Scope, m.Subject.Text),
+		)
+	}
 
-	body := fmt.Sprintf("\n%s\n", m.Body)
-	builder.WriteString(body)
+	if len(m.Body) > 0 {
+		builder.WriteString(fmt.Sprintf("\n%s\n", m.Body))
+	}
 
-	footer := fmt.Sprintf("\n%s", m.Footer)
-	builder.WriteString(footer)
+	if len(m.Footer) > 0 {
+		builder.WriteString(fmt.Sprintf("\n%s", m.Footer))
+	}
 
 	return builder.String()
 }
