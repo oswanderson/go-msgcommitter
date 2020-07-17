@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # linux 64 arch
-env GOOS=linux GOARCH=amd64 go build -o prepare-commit-msg-linux cmd/msgcommitter/msgcommitter.go
+env GOOS=linux GOARCH=amd64 go build -o prepare-commit-msg cmd/msgcommitter/msgcommitter.go
 
 # windows 64 arch
-env GOOS=windows GOARCH=amd64 go build -o prepare-commit-msg-windows cmd/msgcommitter/msgcommitter.go
+env GOOS=windows GOARCH=amd64 go build -o prepare-commit-msg.exe cmd/msgcommitter/msgcommitter.go
