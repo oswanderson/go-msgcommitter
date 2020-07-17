@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"go-msgcommitter/message"
 	"go-msgcommitter/msgformat"
+	"log"
 	"os"
 	"strings"
 )
@@ -14,8 +15,17 @@ const (
 )
 
 func getInput() string {
-	reader := bufio.NewReader(os.Stdin)
-	input, _ := reader.ReadString('\n')
+	file, err := os.Open("/dev/tty")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	reader := bufio.NewReader(file)
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	input = strings.Replace(input, "\n", "", -1)
 	input = strings.Trim(input, " ")
 
