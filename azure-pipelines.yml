@@ -29,16 +29,26 @@ steps:
   displayName: 'Run tests'
 
 - script: |
-    go build -o msgcommitter -v cmd/msgcommitter/msgcommitter.go
+    env GOOS=linux GOARCH=amd64 go build -o prepare-commit-msg cmd/msgcommitter/msgcommitter.go
+    env GOOS=windows GOARCH=amd64 go build -o prepare-commit-msg.exe cmd/msgcommitter/msgcommitter.go
   displayName: 'Build msgcommitter'
 
 - script: |
-    if [ -e msgcommitter ]
+    if [ -e prepare-commit-msg ]
     then
-      echo "file msgcommitter successfully generated"
+      echo "file prepare-commit-msg successfully generated"
       exit 0
     else
-      echo "File msgcommitter not generated"
+      echo "File prepare-commit-msg not generated"
       exit 1
     fi
-  displayName: 'Validate msgcommitter file existance after build'
+
+    if [ -e prepare-commit-msg.exe ]
+    then
+      echo "file prepare-commit-msg successfully generated"
+      exit 0
+    else
+      echo "File prepare-commit-msg not generated"
+      exit 1
+    fi
+  displayName: 'Validate prepare-commit-msg and prepare-commit-msg.exe files existance after build'
