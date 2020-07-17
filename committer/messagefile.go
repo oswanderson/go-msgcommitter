@@ -13,6 +13,9 @@ func WriteMessageToFile(filePath string, content string) {
 		log.Fatal(err)
 	}
 
+	file.Truncate(0)
+	file.Seek(0, 0)
+
 	if _, err = file.WriteString(content); err != nil {
 		log.Fatal(err)
 	}
