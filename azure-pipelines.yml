@@ -29,7 +29,7 @@ steps:
   displayName: 'Run tests'
 
 - script: |
-    go build -o msgcommitter -v cmd/msgcommitter/main.go
+    go build -o msgcommitter -v cmd/msgcommitter/msgcommitter.go
   displayName: 'Build msgcommitter'
 
 - script: |
