@@ -7,6 +7,7 @@ import (
 	"go-msgcommitter/msgformat"
 	"log"
 	"os"
+	"runtime"
 	"strings"
 )
 
@@ -15,10 +16,27 @@ const (
 )
 
 func getInput() string {
-	file, err := os.Open("/dev/tty")
-	if err != nil {
-		log.Fatal(err)
+	inputDeviceLocation := "/dev/tty"
+	
+	if runtime.GOOS == "windows" {
+		inputDeviceLocation = "CON"
+		fmt.Println("Trying to open from CON")
 	}
+	
+	file, err := os.Open(inputDeviceLocation)
+	if runtime.GOOS == "windows" && err != nil {
+		fmt.Println("Failed opening from CON")
+		fmt.Println(err)
+		fmt.Println("Trying to open from CON:")
+		inputDeviceLocation = "CON:"
+		file, err = os.Open(inputDeviceLocation)
+		if err != nil {
+			fmt.Println("Failed opening from CON:")
+			log.Fatal(err)
+		}
+	}
+	
+	fmt.Printf("opened from %s\n", inputDeviceLocation)
 
 	reader := bufio.NewReader(file)
 	input, err := reader.ReadString('\n')
