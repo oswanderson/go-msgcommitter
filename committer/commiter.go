@@ -13,38 +13,29 @@ import (
 
 const (
 	lineStarter = '>'
+	delimiter   = '\n'
 )
 
 func getInput() string {
 	inputDeviceLocation := "/dev/tty"
-	
+
 	if runtime.GOOS == "windows" {
 		inputDeviceLocation = "CON"
-		fmt.Println("Trying to open from CON")
 	}
-	
+
 	file, err := os.Open(inputDeviceLocation)
-	if runtime.GOOS == "windows" && err != nil {
-		fmt.Println("Failed opening from CON")
-		fmt.Println(err)
-		fmt.Println("Trying to open from CON:")
-		inputDeviceLocation = "CON:"
-		file, err = os.Open(inputDeviceLocation)
-		if err != nil {
-			fmt.Println("Failed opening from CON:")
-			log.Fatal(err)
-		}
+	if err != nil {
+		log.Fatal(err)
 	}
-	
-	fmt.Printf("opened from %s\n", inputDeviceLocation)
 
 	reader := bufio.NewReader(file)
-	input, err := reader.ReadString('\n')
+	input, err := reader.ReadString(delimiter)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	input = strings.Replace(input, "\n", "", -1)
+	input = strings.Replace(input, "\r", "", -1) // for Windows
 	input = strings.Trim(input, " ")
 
 	return input
